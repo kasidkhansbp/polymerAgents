@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "polymeragents"
+version = "0.1.0"
+description = "8 core agentic patterns on LangGraph, provider-agnostic."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Kasid Khan", email = "kasidkhan@gmail.com" }]
+keywords = ["agents", "langgraph", "langchain", "llm"]
+
+# Base dependencies: needed by every install regardless of provider.
+# Provider integrations are NOT here — they live in optional-dependencies
+# so the factory's lazy imports can pull in only what the user installs.
+dependencies = [
+    "pydantic>=2.0.0",
+    "langchain-core>=0.3.0",
+    "langgraph>=0.2.0",
+]
+
+[project.optional-dependencies]
+# One extra per provider. Install with e.g. pip install "polymeragents[anthropic]".
+# Each maps 1:1 to a branch in core/llm/factory.py.
+anthropic = ["langchain-anthropic>=0.3.0"]
+openai = ["langchain-openai>=0.2.0"]
+gemini = ["langchain-google-genai>=2.0.0"]
+deepseek = ["langchain-deepseek>=0.1.0"]
+
+# Convenience alias pulling in every provider at once.
+all = ["polymeragents[anthropic,openai,gemini,deepseek]"]
+
+# Development / test tooling.
+dev = ["pytest>=8.0.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["core"]
