@@ -18,7 +18,7 @@ the others installed.
 
 from __future__ import annotations
 
-from core.config import AgentConfig, Provider
+from polymeragents.core.config import AgentConfig, Provider
 
 
 def build_llm(config: AgentConfig):

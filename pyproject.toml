@@ -23,7 +23,7 @@ dependencies = [
 
 [project.optional-dependencies]
 # One extra per provider. Install with e.g. pip install "polymeragents[anthropic]".
-# Each maps 1:1 to a branch in core/llm/factory.py.
+# Each maps 1:1 to a branch in polymeragents/core/llm/factory.py.
 anthropic = ["langchain-anthropic>=0.3.0"]
 openai = ["langchain-openai>=0.2.0"]
 gemini = ["langchain-google-genai>=2.0.0"]
@@ -36,4 +36,4 @@ all = ["polymeragents[anthropic,openai,gemini,deepseek]"]
 dev = ["pytest>=8.0.0"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["core"]
+packages = ["polymeragents"]
