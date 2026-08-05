@@ -1,20 +1,4 @@
-"""
-LLM factory for polymerAgents.
-
-Decision 6 (flow): the caller constructs an AgentConfig -> hands it to a factory
--> the factory reads config.provider and builds the matching LangChain chat
-model. Providers are swapped by changing config.provider IN CODE, never by an
-env var (Decision 1).
-
-On API keys (Decision 3): we pass provider + model + tuning params only. Each
-LangChain integration reads its provider's standard env var for the key
-(ANTHROPIC_API_KEY / OPENAI_API_KEY / GOOGLE_API_KEY / DEEPSEEK_API_KEY). The
-factory never sees a secret.
-
-Provider SDKs are imported lazily, inside each branch, so a user who installs
-only the integration they use (e.g. langchain-anthropic) is not forced to have
-the others installed.
-"""
+# LLMFactory for dynamic client instantiation
 
 from __future__ import annotations
 
