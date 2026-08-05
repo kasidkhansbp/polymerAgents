@@ -21,7 +21,7 @@ class OpenAIAdapter(BaseLLM):
             **kwargs
         )
         return LLMResponse(
-            content=response.choices[0].message["content"] or "",
+            content=response.choices[0].message.content or "",
             raw_response=response.model_dump(),
             prompt_tokens=response.usage.prompt_tokens if response.usage else None,
             completion_tokens=response.usage.completion_tokens if response.usage else None,
