@@ -73,11 +73,12 @@ class AnthropicAdapter(BaseLLM):
             max_tokens=max_tokens,
             **kwargs
         ) as stream:
-            async for text_delta in stream.text_deltas:
+            async for text_delta in stream.text_stream:
                 yield LLMResponse(
                     content=text_delta,
                     raw_response={},
-                    input_tokens=None,
+                    input_tokens=stream.current_message_snapshot.usage.input_tokens if stream.current_message_snapshot and stream.current_message_snapshot.usage else None,
                     output_tokens=None,
                     model_name=model
                 )
+                
