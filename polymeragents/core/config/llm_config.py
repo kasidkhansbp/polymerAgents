@@ -26,9 +26,7 @@ class LLMConfig(BaseComponentConfig):
     seed: Optional[int] = Field(default=None)
 
     # Operational controls
-    timeout: float = Field(default=60.0, gt=0.0, description="API call timeout in seconds")
     max_retries: int = Field(default=3, ge=0)
-    api_key: Optional[SecretStr] = Field(default=None, description="Falls back to standard env vars if None")
 
     # Advanced provider pass-throughs
     extra_headers: dict[str, str] = Field(default_factory=dict)

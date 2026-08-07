@@ -1,9 +1,8 @@
 # Base configuration schemas (Pydantic / Dataclasses)
 # Purpose: Shared abstractions, reusable mixins, custom types, and the root system setting that loads environment variables (.env).
 
-from ast import Dict
 from enum import Enum
-from typing import Any, Any, Literal, Optional
+from typing import Any, Dict, Literal, Optional
 from pydantic import BaseModel, ConfigDict, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
